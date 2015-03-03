@@ -3,9 +3,10 @@
 #
 
 module.exports = (robot) ->
-  robot.router.post '/papertrail/', (req, res) ->
-   data   = JSON.parse req.body.payload
+  robot.router.post '/papertrail/:room', (req, res) ->
+    room = req.params.room
+    data = JSON.parse req.body.payload
 
-   robot.messageRoom "general", data
+    robot.send {room: room}, 'Papertrail: #{data}'
 
-   res.send 'OK'
+    res.send 'Ok'
