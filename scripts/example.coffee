@@ -74,8 +74,9 @@ module.exports = (robot) ->
   #     msg.send "Not annoying you right now, am I?"
   #
   #
-  robot.router.post '/status', (req, res) ->
-    res.send 'OK'
+  robot.router.get '/status', (req, res) ->
+    res.writeHead 200, {'Content-Type': 'text/plain'}
+    res.end 'Me is alive!!!!!\n'
   #
   # robot.error (err, msg) ->
   #   robot.logger.error "DOES NOT COMPUTE"
