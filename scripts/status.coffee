@@ -6,3 +6,4 @@ module.exports = (robot) ->
   robot.router.get '/status', (req, res) ->
     res.writeHead 200, {'Content-Type': 'text/plain'}
     res.end 'Me is alive!!!!!\n'
+    robot.send {room: 'general'}, 'wally deployed!!'
