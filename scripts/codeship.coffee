@@ -5,16 +5,14 @@
 module.exports = (robot) ->
   robot.router.post '/codeship/:channel', (req, res) ->
     channel = req.params.channel
-    console.log(req)
-    # data = JSON.parse req.body.payload
+    data = JSON.parse req.body.payload
 
-    # payload =
-    #   channel: channel
-    #   content:
-    #     text: "```" + text + "```"
-    #     fallback: "Papertrail: " + name
-    #     pretext: '"' + name + '" search found ' + count + ' match(es) - ' + link
-    #     mrkdwn_in: ['text', 'pretext']
-    #
-    # robot.emit 'slack-attachment', payload
+    payload =
+      channel: channel
+      content:
+        text: data.build.committer + ' pushed: "' + data.build.message + '" to ' + data.build.branch
+        fallback: "Codeship: build " + data.build.status
+        mrkdwn_in: ['text']
+
+    robot.emit 'slack-attachment', payload
     res.send 'Ok'
