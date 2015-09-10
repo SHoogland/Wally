@@ -10,6 +10,15 @@
 
 module.exports = (robot) ->
 
+  robot.router.get '/biertijd', (req, res) ->
+    payload =
+      channel: 'general'
+      content:
+        title: "Biertijd!!! ga is bier halen!"
+        color: 'good'
+
+    robot.emit 'slack-attachment', payload
+    res.send 'Ok'
   # robot.hear /badger/i, (msg) ->
   #   msg.send "Badgers? BADGERS? WE DON'T NEED NO STINKIN BADGERS"
   #
